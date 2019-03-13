@@ -57,6 +57,10 @@ public struct ButtonBarPagerTabStripSettings {
         public var buttonBarItemFont = UIFont.systemFont(ofSize: 18)
         public var buttonBarItemLeftRightMargin: CGFloat = 8
         public var buttonBarItemTitleColor: UIColor?
+
+		public var selectedButtonBarItemFont : UIFont?
+		public var selectedButtonBarItemColor : UIColor?
+
         @available(*, deprecated: 7.0.0) public var buttonBarItemsShouldFillAvailiableWidth: Bool {
             set {
                 buttonBarItemsShouldFillAvailableWidth = newValue
@@ -307,6 +311,12 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
             }
         }
         moveToViewController(at: indexPath.item)
+
+		let style = settings.style
+		if(style.selectedButtonBarItemFont != nil || style.selectedButtonBarItemColor != nil) {
+			collectionView.reloadItems(at: [oldIndexPath, newIndexPath])
+		}
+
     }
 
     // MARK: - UICollectionViewDataSource
@@ -326,16 +336,21 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         let indicatorInfo = childController.indicatorInfo(for: self)
 
         cell.label.text = indicatorInfo.title
-        cell.label.font = settings.style.buttonBarItemFont
-        cell.label.textColor = settings.style.buttonBarItemTitleColor ?? cell.label.textColor
+		let style = settings.style
+		let isCellSelected = indexPath.item == self.buttonBarView.selectedIndex
+		cell.label.font = isCellSelected && style.selectedButtonBarItemFont != nil ? style.selectedButtonBarItemFont : style.buttonBarItemFont
+		if let color = style.selectedButtonBarItemColor, isCellSelected {
+			cell.label.textColor = color
+		}
+		else {
+			cell.label.textColor = settings.style.buttonBarItemTitleColor ?? cell.label.textColor
+		}
+
         cell.contentView.backgroundColor = settings.style.buttonBarItemBackgroundColor ?? cell.contentView.backgroundColor
         cell.backgroundColor = settings.style.buttonBarItemBackgroundColor ?? cell.backgroundColor
-        if let image = indicatorInfo.image {
-            cell.imageView.image = image
-        }
-        if let highlightedImage = indicatorInfo.highlightedImage {
-            cell.imageView.highlightedImage = highlightedImage
-        }
+		//set even if indicatorInfo images are nil to reset the image view for items those do not have them
+		cell.imageView.image = indicatorInfo.image
+        cell.imageView.highlightedImage = indicatorInfo.highlightedImage
 
         configureCell(cell, indicatorInfo: indicatorInfo)
 
