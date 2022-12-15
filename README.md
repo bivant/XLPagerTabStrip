@@ -3,7 +3,7 @@
 <p align="left">
 <a href="https://travis-ci.org/xmartlabs/XLPagerTabStrip"><img src="https://travis-ci.org/xmartlabs/XLPagerTabStrip.svg?branch=master" alt="Build status" /></a>
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift4-compatible-4BC51D.svg?style=flat" alt="Swift 4 compatible" /></a>
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift5-compatible-4BC51D.svg?style=flat" alt="Swift 5 compatible" /></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
 <a href="https://cocoapods.org/pods/XLPagerTabStrip"><img src="https://img.shields.io/cocoapods/v/XLPagerTabStrip.svg" alt="CocoaPods compatible" /></a>
 <a href="https://raw.githubusercontent.com/xmartlabs/XLPagerTabStrip/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" />
@@ -15,6 +15,8 @@
 Made with ❤️ by [XMARTLABS](http://xmartlabs.com).
 
 Android [PagerTabStrip](http://developer.android.com/reference/android/support/v4/view/PagerTabStrip.html) for iOS!
+
+👉 Looking for a SwiftUI version? Check out [PagerTabStripView](https://github.com/xmartlabs/PagerTabStripView), it's fully written in pure SwiftUI. 👈
 
 **XLPagerTabStrip** is a *Container View Controller* that allows us to switch easily among a collection of view controllers. Pan gesture can be used to move on to next or previous view controller. It shows a interactive indicator of the current, previous, next child view controllers.
 
@@ -292,7 +294,7 @@ settings.style.segmentedControlColor: UIColor?
 ## Requirements
 
 * iOS 9.3+
-* Xcode 10.1+
+* Xcode 10.2+
 
 ## Examples
 
@@ -307,7 +309,7 @@ Follow these 3 steps to run Example project: Clone XLPagerTabStrip repository, o
 To install XLPagerTabStrip, simply add the following line to your Podfile:
 
 ```ruby
-pod 'XLPagerTabStrip', '~> 8.1'
+pod 'XLPagerTabStrip', '~> 9.0'
 ```
 
 ### Carthage
@@ -317,7 +319,7 @@ pod 'XLPagerTabStrip', '~> 8.1'
 To install XLPagerTabStrip, simply add the following line to your Cartfile:
 
 ```ogdl
-github "xmartlabs/XLPagerTabStrip" ~> 8.1
+github "xmartlabs/XLPagerTabStrip" ~> 9.0
 ```
 
 ## FAQ
