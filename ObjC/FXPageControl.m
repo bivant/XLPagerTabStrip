@@ -1,7 +1,7 @@
 //
 //  FXPageControl.m
 //
-//  Version 1.5
+//  Version 1.6
 //
 //  Created by Nick Lockwood on 07/01/2010.
 //  Copyright 2010 Charcoal Design
@@ -92,7 +92,7 @@ const CGPathRef FXPageControlDotShapeTriangle = (const CGPathRef)3;
 
 - (CGSize)sizeForNumberOfPages:(__unused NSInteger)pageCount
 {
-    CGFloat width = _selectedDotSize + (_dotSize + _dotSpacing) * (_numberOfPages - 1);
+    CGFloat width = (_selectedDotSize ?: _dotSize) + (_dotSize + _dotSpacing) * (_numberOfPages - 1);
     CGFloat height = MAX(_dotSize, _selectedDotSize);
     return _vertical? CGSizeMake(height, width): CGSizeMake(width, height);
 }
@@ -102,7 +102,7 @@ const CGPathRef FXPageControlDotShapeTriangle = (const CGPathRef)3;
     [self setNeedsDisplay];
 }
 
-- (void)drawRect:(__unused CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
     if (_numberOfPages > 1 || !_hidesForSinglePage)
     {
@@ -216,7 +216,7 @@ const CGPathRef FXPageControlDotShapeTriangle = (const CGPathRef)3;
             CGFloat offset = (_dotSize + _dotSpacing) * i + dotSize / 2;
             if (i > _currentPage)
             {
-                offset += _selectedDotSize - _dotSize;
+                offset += (_selectedDotSize?: _dotSize) - _dotSize;
             }
             CGContextTranslateCTM(context, _vertical? 0: offset, _vertical? offset: 0);
 
